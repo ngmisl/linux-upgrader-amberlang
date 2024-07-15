@@ -1,0 +1,30 @@
+import { exit } from "std"
+
+main {
+  // Print output and log it at the same time.
+  $ exec > >(tee -a /var/log/autoapt.log) 2>&1 $?
+  // Log the current date so that we can check when any failed runs happened.
+  $ date $?
+
+  // Internet is slow on Austrian trains. Check the Wifi SSID and stop in that
+  // case.
+  silent unsafe $ iwgetid -r | grep -E '(OEBB|WESTlan)' $
+  if status == 0 {
+    echo "Skipping updates because of slow Wifi"
+    exit(0)
+  }
+
+  $ export DEBIAN_FRONTEND=noninteractive $?
+  $ apt update $?
+  $ yes '' | apt upgrade $?
+  // Clean up any packages that are not needed anymore.
+  $ apt autoremove -y $?
+  // update Snap packages.
+  $ snap refresh --color=never --unicode=never $?
+  // flatpak update, yes to all
+  $ yes '' | flatpak update $?
+  // bun upgrade
+  $ bun upgrade $?
+  // cargo update
+  $ cargo install-update -a $?
+}
