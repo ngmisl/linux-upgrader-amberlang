@@ -25,6 +25,8 @@ main {
   $ yes '' | flatpak update $?
   // bun upgrade
   $ bun upgrade $?
+  // rustup update
+  $ rustup update $?
   // cargo update
   $ cargo install-update -a $?
 }
