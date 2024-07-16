@@ -22,7 +22,7 @@ main {
   // update Snap packages.
   $ snap refresh --color=never --unicode=never $?
   // flatpak update, yes to all
-  $ yes '' | flatpak update $?
+  $ flatpak update -y $?
   // bun upgrade
   $ bun upgrade $?
   // rustup update

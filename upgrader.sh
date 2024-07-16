@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Written in [Amber](https://amber-lang.com/)
 # version: 0.3.4-alpha
-# date: 2024-07-15 10:26:36
+# date: 2024-07-16 09:21:23
 function exit__26_v0 {
     local code=$1
     exit "${code}";
@@ -58,7 +58,7 @@ if [ $__AS != 0 ]; then
 
 exit $__AS
 fi
-     yes '' | flatpak update ;
+     flatpak update -y ;
     __AS=$?;
 if [ $__AS != 0 ]; then
 
