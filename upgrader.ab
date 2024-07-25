@@ -25,4 +25,5 @@ main {
   $ brew upgrade $?
   $ bun upgrade $?
   $ pipx upgrade-all $?
+  $ sudo -k$?
 }
